@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "scripts": {"start": "node server.js", "dev": "node server.js", "audit": "node scripts/audit.mjs"},
+  "scripts": {"start": "node server.js", "dev": "node server.js", "audit": "node scripts/audit.mjs", "smoke": "node scripts/smoke.mjs"},
   "engines": {"node": ">=20"},
   "license": "MIT"
 }
