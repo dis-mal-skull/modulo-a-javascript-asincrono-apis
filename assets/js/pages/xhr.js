@@ -1,1 +1,4 @@
-export function initXHR(){return document.querySelector('form')}
+import {createConsole} from '../core/console-panel.js';
+import {setBusy} from '../core/ui.js';
+const form=document.querySelector('form');const submit=form?.querySelector('button');const output=document.querySelector('[data-output]');const panel=createConsole(document.querySelector('[data-console]'));
+form?.addEventListener('submit',event=>{event.preventDefault();if(!form.reportValidity())return;setBusy(submit,true,'Enviando…');panel.clear();const started=performance.now();const xhr=new XMLHttpRequest();xhr.open('POST','../test.php');xhr.responseType='text';xhr.addEventListener('readystatechange',()=>panel.debug(`readyState=${xhr.readyState}`));xhr.addEventListener('load',()=>{output.textContent=xhr.responseText;panel.success(`HTTP ${xhr.status} · ${Math.round(performance.now()-started)} ms`);setBusy(submit,false)});xhr.addEventListener('error',()=>{output.textContent='No fue posible contactar al servidor.';panel.error('Error de red');setBusy(submit,false)});xhr.send(new FormData(form))});

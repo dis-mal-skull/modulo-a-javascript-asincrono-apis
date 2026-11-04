@@ -1,1 +1,3 @@
-export function initPostFormData(){return document.querySelector('form')}
+import {setBusy} from '../core/ui.js';import {createConsole} from '../core/console-panel.js';
+const form=document.querySelector('form');const button=form?.querySelector('button');const output=document.querySelector('[data-output]');const panel=createConsole(document.querySelector('[data-console]'));
+form?.addEventListener('submit',async event=>{event.preventDefault();if(!form.reportValidity())return;setBusy(button,true,'Enviando…');panel.clear();const started=performance.now();try{const response=await fetch('../test.php',{method:'POST',body:new FormData(form)});const text=await response.text();output.textContent=text;panel.success(`${response.status} · ${response.headers.get('content-type')} · ${Math.round(performance.now()-started)} ms`)}catch(error){output.textContent='No fue posible enviar el formulario.';panel.error(error.message)}finally{setBusy(button,false)}});
