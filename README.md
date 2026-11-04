@@ -40,9 +40,33 @@ Material educativo para SENA ADSO, módulo Procesamiento de datos. Instructor: *
 
 `POST /test.php` acepta `num1`, `num2`, `nombre`, `correo` y `mensaje`. Devuelve texto plano con operaciones matemáticas o el resumen del formulario. En Vercel, las demos usan `/api/test`, equivalente serverless.
 
+Ejemplo con `num1=8` y `num2=2`:
+
+```text
+RESPUESTA DEL SERVIDOR
+======================
+Suma: 10
+Resta: 6
+Producto: 16
+División: 4.0000
+```
+
+## Árbol del proyecto
+
+```text
+02-demo/
+├─ index.html · README.md · package.json · server.js · test.php
+├─ ejemplos/ · ejercicios/
+├─ assets/css/ · assets/js/core/ · assets/js/pages/
+├─ data/ · api/
+└─ scripts/audit.mjs · scripts/smoke.mjs
+```
+
 ## Decisiones de implementación
 
 HTML5, CSS3 y JavaScript ES2022 sin frameworks ni dependencias npm. Las utilidades compartidas viven en `assets/js/core`; cada página tiene un módulo propio. Los datos externos se renderizan con nodos DOM y `textContent`, con fallback local ante errores. La interfaz usa `es-CO`, superficies claras, verde teal, consola oscura, estados de carga y controles accesibles.
+
+Para adaptar la clase, cambia los valores iniciales de los formularios, agrega ejemplos en `assets/js/pages`, o reemplaza los snapshots en `data/`. `npm run audit` comprueba estructura y cantidades; `npm run smoke` comprueba el servidor, el contrato POST y sus defensas básicas.
 
 ## Despliegue en Vercel
 
