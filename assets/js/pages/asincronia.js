@@ -1,1 +1,5 @@
-export function initAsincronia(){return document.querySelectorAll('[data-demo]')}
+import {wait} from '../core/dom.js';
+import {createConsole} from '../core/console-panel.js';
+const panel=createConsole(document.querySelector('[data-console]'));const output=document.querySelector('[data-output]');const buttons=document.querySelectorAll('[data-scenario]');
+const run=async scenario=>{panel.clear();const events=[];const mark=value=>{events.push(value);panel.log(value)};if(scenario==='orden'){mark('1. inicio síncrono');setTimeout(()=>{mark('3. callback de setTimeout');output.textContent=events.join(' → ')},300);mark('2. fin síncrono')}else if(scenario==='callback'){const fake=(name,delay)=>new Promise(resolve=>setTimeout(()=>{mark(`${name} listo`);resolve(name)},delay));const user=await fake('Usuario',250);const posts=await fake(`Posts de ${user}`,250);await fake(`Comentarios de ${posts}`,250);output.textContent=events.join(' → ')}else{const fake=(name,delay)=>new Promise(resolve=>setTimeout(()=>{mark(name);resolve(name)},300));await fake('Usuario cargado',300);await fake('Posts cargados',300);await fake('Comentarios cargados',300);output.textContent='La cadena simulada terminó sin anidar callbacks manualmente.'}};
+buttons.forEach(button=>button.addEventListener('click',()=>run(button.dataset.scenario)));
