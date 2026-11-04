@@ -72,6 +72,14 @@ Para adaptar la clase, cambia los valores iniciales de los formularios, agrega e
 
 El sitio es estático y `api/test.js` proporciona el endpoint serverless para formularios. `vercel.json` configura la salida estática. El despliegue productivo está publicado en el proyecto de Vercel asociado.
 
+Para publicar desde una máquina autenticada, usa Vercel CLI desde esta carpeta:
+
+```bash
+npx vercel --prod --yes
+```
+
+Después comprueba la portada y `POST /api/test`. Nunca guardes el token en Git ni en `package.json`; si usas automatización, configúralo como secreto del proveedor.
+
 ## Solución de problemas
 
 | Problema | Solución |
