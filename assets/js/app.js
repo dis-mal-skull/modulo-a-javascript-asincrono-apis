@@ -3,6 +3,7 @@ import {createConsole} from './core/console-panel.js';
 import {requestJSON,describeError} from './core/http.js';
 import {formatCurrency,formatNumber,formatPercent} from './core/format.js';
 import './pages/crypto-stats.js';
+import './pages/trm-tooltip.js';
 initUI();
 const page=document.body.dataset.page; const consoleRoot=document.querySelector('[data-console]'); const panel=consoleRoot?createConsole(consoleRoot):null; const out=document.querySelector('[data-output]'); const write=value=>{if(out)out.textContent=String(value??'')};
 const safeText=(parent,tag,text,className='')=>{const node=document.createElement(tag);node.textContent=String(text??'');if(className)node.className=className;parent.append(node);return node};
