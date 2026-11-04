@@ -1,0 +1,1 @@
+import {qsa} from './dom.js'; export function initUI(){qsa('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());qsa('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{const t=document.querySelector(b.dataset.copy);if(t){await navigator.clipboard?.writeText(t.textContent||'');b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar',1200)}}));}
